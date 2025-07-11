@@ -4,16 +4,6 @@
 
 typedef enum { FILE_NODE, DIRECTORY_NODE }node_type;
 
-typedef struct node {
-    node_type file_type;
-    struct node *parent_node;
-    struct node **nodes_inside;
-    char name[256];
-    char path[256];
-    int children_count;
-} node;
-
-// TODO!
 typedef enum {
     EXT_UNKNOWN = 0,
     EXT_TXT,
@@ -56,16 +46,30 @@ typedef enum {
     EXT_TOTAL_COUNT
 } extension;
 
+typedef struct node {
+    node_type file_type;
+    extension file_ext;
+    struct node *parent_node;
+    struct node **nodes_inside;
+    char name[256];
+    char path[256];
+    int children_count;
+} node;
 
-node *node_constructor(node_type is_file, char *name, char *path, node *parent_node) {
+
+node *node_constructor(node_type file_type, char *name, char *path, node *parent_node) {
     node *new_node = malloc(sizeof(node));
     new_node->children_count = 0;
-    new_node->file_type = is_file;
+    new_node->file_type = file_type;
     new_node->parent_node = parent_node;
     strcpy(new_node->name, name);
     strcpy(new_node->path, path);
     new_node->nodes_inside = NULL;
     return new_node;
+}
+
+void update_node_ext(node *file_to_update) {
+    
 }
 
 void add_children_to_node(node *parent_node, node *node_to_add) {
@@ -128,16 +132,16 @@ void check_and_free_graph(node *main_directory) {
 
 
 int main(void) {
-    node *main_directory = node_constructor(0, "MainDir", "/", NULL);
+    node *main_directory = node_constructor(DIRECTORY_NODE, "MainDir", "/", NULL);
 
-    node *subdir1 = node_constructor(0, "SubDir1", "/SubDir1", main_directory);
-    node *subdir2 = node_constructor(0, "SubDir2", "/SubDir2", main_directory);
-    node *subsubdir = node_constructor(0, "SubSubDir", "/SubDir2/SubSubDir", subdir2);
+    node *subdir1 = node_constructor(DIRECTORY_NODE, "SubDir1", "/SubDir1", main_directory);
+    node *subdir2 = node_constructor(DIRECTORY_NODE, "SubDir2", "/SubDir2", main_directory);
+    node *subsubdir = node_constructor(DIRECTORY_NODE, "SubSubDir", "/SubDir2/SubSubDir", subdir2);
 
-    node *file1 = node_constructor(1, "file1.txt", "/SubDir1/file1.txt", subdir1);
-    node *file2 = node_constructor(1, "file2.txt", "/SubDir1/file2.txt", subdir1);
-    node *file3 = node_constructor(1, "file3.txt", "/SubDir2/SubSubDir/file3.txt", subsubdir);
-    node *rootfile = node_constructor(1, "rootfile.txt", "/rootfile.txt", main_directory);
+    node *file1 = node_constructor(FILE_NODE, "file1.txt", "/SubDir1/file1.txt", subdir1);
+    node *file2 = node_constructor(FILE_NODE, "file2.txt", "/SubDir1/file2.txt", subdir1);
+    node *file3 = node_constructor(FILE_NODE, "file3.txt", "/SubDir2/SubSubDir/file3.txt", subsubdir);
+    node *rootfile = node_constructor(FILE_NODE, "rootfile.txt", "/rootfile.txt", main_directory);
 
     add_children_to_node(main_directory, subdir1);
     add_children_to_node(main_directory, subdir2);
