@@ -69,7 +69,139 @@ node *node_constructor(node_type file_type, char *name, char *path, node *parent
 }
 
 void update_node_ext(node *file_to_update) {
-    
+    char tmp[256];
+    if(file_to_update->file_type == DIRECTORY_NODE) {
+        printf("THIS IS A DIRECTORY >:c");
+    } else {
+        int i=0;
+        int j=0;
+        int is_dot = 0;
+        char *name = file_to_update->name;
+        while (name[i] != '\0') {
+            if(is_dot == 1) {
+                tmp[j] = name[i];
+                j++; 
+            }
+            if(name[i] == '.') {
+                is_dot = 1;
+            }
+            i++;
+        }
+    }
+
+    if (strcmp(tmp, "txt") == 0) {
+        file_to_update->file_ext = EXT_TXT;
+        printf("Znaleziono txt\n");
+    } else if (strcmp(tmp, "pdf") == 0) {
+        file_to_update->file_ext = EXT_PDF;
+        printf("Znaleziono pdf\n");
+    } else if (strcmp(tmp, "doc") == 0) {
+        file_to_update->file_ext = EXT_DOC;
+        printf("Znaleziono doc\n");
+    } else if (strcmp(tmp, "docx") == 0) {
+        file_to_update->file_ext = EXT_DOCX;
+        printf("Znaleziono docx\n");
+    } else if (strcmp(tmp, "xls") == 0) {
+        file_to_update->file_ext = EXT_XLS;
+        printf("Znaleziono xls\n");
+    } else if (strcmp(tmp, "xlsx") == 0) {
+        file_to_update->file_ext = EXT_XLSX;
+        printf("Znaleziono xlsx\n");
+    } else if (strcmp(tmp, "ppt") == 0) {
+        file_to_update->file_ext = EXT_PPT;
+        printf("Znaleziono ppt\n");
+    } else if (strcmp(tmp, "pptx") == 0) {
+        file_to_update->file_ext = EXT_PPTX;
+        printf("Znaleziono pptx\n");
+    } else if (strcmp(tmp, "jpg") == 0) {
+        file_to_update->file_ext = EXT_JPG;
+        printf("Znaleziono jpg\n");
+    } else if (strcmp(tmp, "jpeg") == 0) {
+        file_to_update->file_ext = EXT_JPEG;
+        printf("Znaleziono jpeg\n");
+    } else if (strcmp(tmp, "png") == 0) {
+        file_to_update->file_ext = EXT_PNG;
+        printf("Znaleziono png\n");
+    } else if (strcmp(tmp, "gif") == 0) {
+        file_to_update->file_ext = EXT_GIF;
+        printf("Znaleziono gif\n");
+    } else if (strcmp(tmp, "mp3") == 0) {
+        file_to_update->file_ext = EXT_MP3;
+        printf("Znaleziono mp3\n");
+    } else if (strcmp(tmp, "wav") == 0) {
+        file_to_update->file_ext = EXT_WAV;
+        printf("Znaleziono wav\n");
+    } else if (strcmp(tmp, "flac") == 0) {
+        file_to_update->file_ext = EXT_FLAC;
+        printf("Znaleziono flac\n");
+    } else if (strcmp(tmp, "mp4") == 0) {
+        file_to_update->file_ext = EXT_MP4;
+        printf("Znaleziono mp4\n");
+    } else if (strcmp(tmp, "mkv") == 0) {
+        file_to_update->file_ext = EXT_MKV;
+        printf("Znaleziono mkv\n");
+    } else if (strcmp(tmp, "avi") == 0) {
+        file_to_update->file_ext = EXT_AVI;
+        printf("Znaleziono avi\n");
+    } else if (strcmp(tmp, "zip") == 0) {
+        file_to_update->file_ext = EXT_ZIP;
+        printf("Znaleziono zip\n");
+    } else if (strcmp(tmp, "rar") == 0) {
+        file_to_update->file_ext = EXT_RAR;
+        printf("Znaleziono rar\n");
+    } else if (strcmp(tmp, "7z") == 0) {
+        file_to_update->file_ext = EXT_7Z;
+        printf("Znaleziono 7z\n");
+    } else if (strcmp(tmp, "tar") == 0) {
+        file_to_update->file_ext = EXT_TAR;
+        printf("Znaleziono tar\n");
+    } else if (strcmp(tmp, "gz") == 0) {
+        file_to_update->file_ext = EXT_GZ;
+        printf("Znaleziono gz\n");
+    } else if (strcmp(tmp, "html") == 0) {
+        file_to_update->file_ext = EXT_HTML;
+        printf("Znaleziono html\n");
+    } else if (strcmp(tmp, "css") == 0) {
+        file_to_update->file_ext = EXT_CSS;
+        printf("Znaleziono css\n");
+    } else if (strcmp(tmp, "js") == 0) {
+        file_to_update->file_ext = EXT_JS;
+        printf("Znaleziono js\n");
+    } else if (strcmp(tmp, "json") == 0) {
+        file_to_update->file_ext = EXT_JSON;
+        printf("Znaleziono json\n");
+    } else if (strcmp(tmp, "xml") == 0) {
+        file_to_update->file_ext = EXT_XML;
+        printf("Znaleziono xml\n");
+    } else if (strcmp(tmp, "c") == 0) {
+        file_to_update->file_ext = EXT_C;
+        printf("Znaleziono c\n");
+    } else if (strcmp(tmp, "cpp") == 0) {
+        file_to_update->file_ext = EXT_CPP;
+        printf("Znaleziono cpp\n");
+    } else if (strcmp(tmp, "h") == 0) {
+        file_to_update->file_ext = EXT_H;
+        printf("Znaleziono h\n");
+    } else if (strcmp(tmp, "py") == 0) {
+        file_to_update->file_ext = EXT_PY;
+        printf("Znaleziono py\n");
+    } else if (strcmp(tmp, "sh") == 0) {
+        file_to_update->file_ext = EXT_SH;
+        printf("Znaleziono sh\n");
+    } else if (strcmp(tmp, "sql") == 0) {
+        file_to_update->file_ext = EXT_SQL;
+        printf("Znaleziono sql\n");
+    } else if (strcmp(tmp, "exe") == 0) {
+        file_to_update->file_ext = EXT_EXE;
+        printf("Znaleziono exe\n");
+    } else if (strcmp(tmp, "dll") == 0) {
+        file_to_update->file_ext = EXT_DLL;
+        printf("Znaleziono dll\n");
+    } else {
+        file_to_update->file_ext = EXT_UNKNOWN;
+        printf("Nieznane rozszerzenie: %s\n", tmp);
+    }
+
 }
 
 void add_children_to_node(node *parent_node, node *node_to_add) {
@@ -153,9 +285,26 @@ int main(void) {
     add_children_to_node(subdir2, subsubdir);
     add_children_to_node(subsubdir, file3);
 
-    printf("___________________________________________________ \n");
-    tree(main_directory, 0);
+    update_node_ext(file1);
+    update_node_ext(file2);
+    update_node_ext(file3);
+    update_node_ext(rootfile);
 
     check_and_free_graph(main_directory);
+
+    // printf("___________________________________________________ \n");
+    // tree(main_directory, 0);
+
+    // check_and_free_graph(main_directory);
+    // printf("___________________________________________________ \n");
+    // char *x = file1->name;
+    // int i=0;
+    // while(x[i] != '.') {
+    //     printf("%c\n", x[i]);
+    //     i++;
+    // }
+
+    // printf("%s\n", x);
+    update_node_ext(file1);
     return 0;
 }
